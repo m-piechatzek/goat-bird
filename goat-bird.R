@@ -13,3 +13,5 @@ a
 
 # shows how many votes per hour in a bar graph
 ggplot(nz_bird, aes(hour)) + geom_bar()
+
+# Add in means, median, mode
