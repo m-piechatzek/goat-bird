@@ -35,6 +35,13 @@ ggplot(nz_bird, aes(hour)) + geom_histogram(color="black", fill="white", binwidt
 # Median of hours in histogram
 ggplot(nz_bird, aes(hour)) + geom_histogram(color="black", fill="white", binwidth = 1) + geom_vline(aes(xintercept=median(hour)),color="blue", linetype="dashed", size=1)
 
-#
+# Mode of hours in histogram
+# had to make a function for mode first!
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+ggplot(nz_bird, aes(hour)) + geom_histogram(color="black", fill="white", binwidth = 1) + geom_vline(aes(xintercept=getmode(nz_bird$hour)),color="blue", linetype="dashed", size=1)
 
 
