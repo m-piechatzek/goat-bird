@@ -44,4 +44,14 @@ getmode <- function(v) {
 
 ggplot(nz_bird, aes(hour)) + geom_histogram(color="black", fill="white", binwidth = 1) + geom_vline(aes(xintercept=getmode(nz_bird$hour)),color="blue", linetype="dashed", size=1)
 
+# Standard Deviation
+# My way
+stand <- m- nz_bird$hour
+stand_sq <- stand^2
+mean_st <-mean(stand_sq)
+sdev <- sqrt(mean_st)
+# Shows the lower sd and higher sd and where the mean is for reference
+ggplot(nz_bird, aes(hour)) + geom_histogram(color="black", fill="white", binwidth = 1) + geom_vline(aes(xintercept=mean(nz_bird$hour)-sdev),color="blue", linetype="dashed", size=1) + geom_vline(aes(xintercept=sdev+mean(nz_bird$hour)),color="red", linetype="dashed", size=1) + geom_vline(aes(xintercept=mean(nz_bird$hour)),color="green", linetype="solid", size=1)
 
+# R way
+sd(nz_bird$hour)
